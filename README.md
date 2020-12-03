@@ -29,8 +29,8 @@ pip3 install youtube-dl
 
 - Column 1: filename
 - Column 2: url
-- Column 3: trim start (optional per video to override the script variable)
-- Column 4: trim end (optional per video to override the script variable)
+- Column 3: trim start (optional per video to override CLIP_START, see below)
+- Column 3: trim start (optional per video to override CLIP_END, see below)
 
 # Edit process-videos.sh configuration
 
