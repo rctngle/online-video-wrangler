@@ -35,8 +35,12 @@ pip3 install youtube-dl
 # Edit process-videos.sh configuration
 
 Edit the variables at the top of the script
-- Clip start, end, size
-- Still large and small sizes
+- CLIP_START: Start timestamp
+- CLIP_END: End timestamp
+- CLIP_WIDTH: Width of clip
+
+- STILL_SIZE_LARGE: Dimensions for the large thumbnail (Resulting image will be exactly this size, centered and letterboxed)
+- STILL_SIZE_SMALL: Dimensions for the small thumbnail (Resulting image will be scaled down to fit within this size)
 
 # Run the script
 

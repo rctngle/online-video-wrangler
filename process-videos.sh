@@ -38,19 +38,19 @@ do
 
 	if [ ! -z $filename ] && [ ! -z $url ]
 	then
-
+		
 		# 1. DOWNLOAD VIDEO
 		
 		if [ ! -f "${ORIGINAL_VIDEOS_DIR}/${filename}" ]; 
 		then
 			youtube-dl -f 'bestvideo[ext=mp4][height<=720]/best[ext=mp4]/best' -o "${ORIGINAL_VIDEOS_DIR}/${filename}" $url
 		fi
-
+		
 		# 2. CREATE TRIMMED AND SCALED CLIP
-
+		
 		start_time=$CLIP_START
 		end_time=$CLIP_END
-
+		
 		if [ ! -z $start ] && [ ! -z $end ]
 		then
 			start_time=$start
@@ -64,10 +64,10 @@ do
 		thumb_name_original=$(basename "$filename" .mp4).jpg
 		thumb_name_large=$(basename "$filename" .mp4)_large.jpg
 		thumb_name_small=$(basename "$filename" .mp4)_small.jpg
-
+		
 		ffmpeg -nostdin -i "${ORIGINAL_VIDEOS_DIR}/${filename}" -vcodec mjpeg -vframes 1 -an -f rawvideo -ss `ffmpeg -i "${ORIGINAL_VIDEOS_DIR}/${filename}" 2>&1 | grep Duration | awk '{print $2}' | tr -d , | awk -F ':' '{print ($3+$2*60+$1*3600)/2}'` "${STILLS_ORIGINAL_DIR}/${thumb_name_original}"
 		convert "${STILLS_ORIGINAL_DIR}/${thumb_name_original}" -resize $STILL_SIZE_LARGE -background black -gravity center -extent $STILL_SIZE_LARGE "${STILLS_LARGE_DIR}/${thumb_name_large}"
 		convert "${STILLS_ORIGINAL_DIR}/${thumb_name_original}" -thumbnail $STILL_SIZE_SMALL -background black -gravity center "${STILLS_SMALL_DIR}/${thumb_name_small}"
-
+		
    	fi
 done < ./videos.csv
