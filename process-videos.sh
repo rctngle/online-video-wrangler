@@ -18,20 +18,20 @@ STILLS_SMALL_DIR=./files/stills-small
 
 cd "$(dirname "$0")"
 
-mkdir -p ./files
-mkdir -p $ORIGINAL_VIDEOS_DIR
+mkdir -p "./files"
+mkdir -p "$ORIGINAL_VIDEOS_DIR"
 
-rm -rf $RESIZED_CLIPS_DIR
-mkdir $RESIZED_CLIPS_DIR
+rm -rf "$RESIZED_CLIPS_DIR"
+mkdir "$RESIZED_CLIPS_DIR"
 
-rm -rf $STILLS_ORIGINAL_DIR
-mkdir $STILLS_ORIGINAL_DIR
+rm -rf "$STILLS_ORIGINAL_DIR"
+mkdir "$STILLS_ORIGINAL_DIR"
 
-rm -rf $STILLS_LARGE_DIR
-mkdir $STILLS_LARGE_DIR
+rm -rf "$STILLS_LARGE_DIR"
+mkdir "$STILLS_LARGE_DIR"
 
-rm -rf $STILLS_SMALL_DIR
-mkdir $STILLS_SMALL_DIR
+rm -rf "$STILLS_SMALL_DIR"
+mkdir "$STILLS_SMALL_DIR"
 
 while IFS=, read -r filename url start end
 do
@@ -41,7 +41,7 @@ do
 		
 		# 1. DOWNLOAD VIDEO
 		
-		if [ ! -f "${ORIGINAL_VIDEOS_DIR}/${filename}" ]; 
+		if [ ! -f "${ORIGINAL_VIDEOS_DIR}/${filename}" ]
 		then
 			youtube-dl -f 'bestvideo[ext=mp4][height<=720]/best[ext=mp4]/best' -o "${ORIGINAL_VIDEOS_DIR}/${filename}" $url
 		fi
